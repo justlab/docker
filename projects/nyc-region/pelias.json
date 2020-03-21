@@ -1,0 +1,220 @@
+{
+  "logger": {
+    "level": "info",
+    "timestamp": false
+  },
+  "esclient": {
+    "apiVersion": "7.5",
+    "hosts": [
+      { "host": "elasticsearch" }
+    ]
+  },
+  "elasticsearch": {
+    "settings": {
+      "index": {
+        "refresh_interval": "10s",
+        "number_of_replicas": "0",
+        "number_of_shards": "2"
+      }
+    }
+  },
+  "acceptance-tests": {
+    "endpoints": {
+      "docker": "http://api:4000/v1/"
+    }
+  },
+  "api": {
+    "services": {
+      "placeholder": { "url": "http://placeholder:4100" },
+      "pip": { "url": "http://pip:4200" },
+      "interpolation": { "url": "http://interpolation:4300" },
+      "libpostal": { "url": "http://libpostal:4400" }
+    },
+    "defaultParameters": {
+      "focus.point.lat": 40.79,
+      "focus.point.lon": -73.953
+    }
+  },
+  "imports": {
+    "adminLookup": {
+      "enabled": true
+    },
+    "blacklist": {
+      "files": [
+        "/data/blacklist/osm.txt"
+      ]
+    },
+    "geonames": {
+      "datapath": "/data/geonames",
+      "countryCode": "ALL"
+    },
+    "openstreetmap": {
+      "download": [
+        { "sourceURL": "https://download.geofabrik.de/north-america/us-northeast-latest.osm.pbf" }
+      ],
+      "leveldbpath": "/tmp",
+      "datapath": "/data/openstreetmap",
+      "import": [{
+        "filename": "us-northeast-latest.osm.pbf"
+      }]
+    },
+    "openaddresses": {
+      "datapath": "/data/openaddresses",
+      "files": [
+        "us/ny/broome.csv",
+        "us/ny/city_of_new_york.csv",
+        "us/ny/city_of_rochester.csv",
+        "us/ny/erie.csv",
+        "us/ny/orange.csv",
+        "us/ny/statewide.csv",
+        "us/ny/sullivan.csv",
+        "us/ny/westchester.csv",
+        "us/pa/adams.csv",
+        "us/pa/allegheny.csv",
+        "us/pa/armstrong.csv",
+        "us/pa/beaver.csv",
+        "us/pa/bedford.csv",
+        "us/pa/berks.csv",
+        "us/pa/blair.csv",
+        "us/pa/bucks.csv",
+        "us/pa/butler.csv",
+        "us/pa/cambria.csv",
+        "us/pa/cameron.csv",
+        "us/pa/centre.csv",
+        "us/pa/chester.csv",
+        "us/pa/clearfield.csv",
+        "us/pa/clinton.csv",
+        "us/pa/columbia.csv",
+        "us/pa/crawford.csv",
+        "us/pa/cumberland.csv",
+        "us/pa/dauphin.csv",
+        "us/pa/elk.csv",
+        "us/pa/erie.csv",
+        "us/pa/fayette.csv",
+        "us/pa/forest.csv",
+        "us/pa/franklin.csv",
+        "us/pa/fulton.csv",
+        "us/pa/greene.csv",
+        "us/pa/huntingdon.csv",
+        "us/pa/juniata.csv",
+        "us/pa/lackawanna.csv",
+        "us/pa/lancaster.csv",
+        "us/pa/lawrence.csv",
+        "us/pa/lehigh.csv",
+        "us/pa/lycoming.csv",
+        "us/pa/mckean.csv",
+        "us/pa/mercer.csv",
+        "us/pa/mifflin.csv",
+        "us/pa/monroe.csv",
+        "us/pa/montour.csv",
+        "us/pa/northampton.csv",
+        "us/pa/northumberland.csv",
+        "us/pa/perry.csv",
+        "us/pa/philadelphia.csv",
+        "us/pa/pike.csv",
+        "us/pa/potter.csv",
+        "us/pa/snyder.csv",
+        "us/pa/somerset.csv",
+        "us/pa/sullivan.csv",
+        "us/pa/tioga.csv",
+        "us/pa/union.csv",
+        "us/pa/venango.csv",
+        "us/pa/wayne.csv",
+        "us/pa/wyoming.csv",
+        "us/pa/york.csv",
+        "us/nj/bergen.csv",
+        "us/nj/cape_may.csv",
+        "us/nj/monmouth.csv",
+        "us/nj/morris.csv",
+        "us/nj/statewide.csv",
+        "us/nj/sussex.csv",
+        "us/ct/city_of_bridgeport.csv",
+        "us/ct/city_of_haddam.csv",
+        "us/ct/city_of_hamden.csv",
+        "us/ct/city_of_hartford.csv",
+        "us/ct/city_of_lyme.csv",
+        "us/ct/city_of_manchester.csv",
+        "us/ct/city_of_milford.csv",
+        "us/ct/city_of_new_britain.csv",
+        "us/ct/city_of_new_haven.csv",
+        "us/ct/city_of_norwalk.csv",
+        "us/ct/city_of_stamford.csv",
+        "us/ct/city_of_stonington.csv",
+        "us/ct/city_of_stratford.csv",
+        "us/ct/city_of_waterbury.csv",
+        "us/ct/city_of_watertown.csv",
+        "us/ct/statewide.csv",
+        "us/ct/town_of_avon.csv",
+        "us/ct/town_of_easton_monroe.csv",
+        "us/ct/town_of_fairfield.csv",
+        "us/ct/town_of_groton.csv",
+        "us/ct/town_of_trumbull.csv"
+      ]
+    },
+    "polyline": {
+      "datapath": "/data/polylines",
+      "files": [ "extract_ny.0sv" ]
+    },
+    "whosonfirst": {
+      "datapath": "/data/whosonfirst",
+      "importVenues": false,
+      "importPostalcodes": true,
+      "importPlace": [
+        "85688543",
+        "85688607",
+        "85688481",
+        "85688629"
+      ]
+    },
+    "transit": {
+      "datapath": "/data/transit",
+      "feeds": [
+        {
+          "layerId": "stops",
+          "url": "https://transitfeeds.com/p/mta/79/latest/download",
+          "filename": "subway_gtfs.zip",
+          "agencyId": "MTA",
+          "agencyName": "MTA",
+          "layerName": "Stop"
+        },
+        {
+          "layerId": "stops",
+          "url": "https://transitfeeds.com/p/mta/85/latest/download",
+          "filename": "bus_gtfs.zip",
+          "agencyId": "MTA",
+          "agencyName": "MTA",
+          "layerName": "Stop"
+        },
+        {
+          "layerId": "stops",
+          "url": "https://transitfeeds.com/p/mta/87/latest/download",
+          "filename": "metro_north_gtfs.zip",
+          "agencyId": "MTA",
+          "agencyName": "MTA",
+          "layerName": "Stop"
+        },
+        {
+          "layerId": "stops",
+          "url": "https://transitfeeds.com/p/mta/87/latest/download",
+          "filename": "lirr_gtfs.zip",
+          "agencyId": "MTA",
+          "agencyName": "MTA",
+          "layerName": "Stop"
+        }
+      ]
+    },
+    "interpolation": {
+      "download": {
+        "tiger": {
+          "datapath": "/data/tiger",
+          "states": [
+            { "state_code": 36 },
+            { "state_code": 34 },
+            { "state_code": 42 },
+            { "state_code": 09 }
+          ]
+        }
+      }
+    }
+  }
+}
