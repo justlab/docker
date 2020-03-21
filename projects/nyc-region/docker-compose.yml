@@ -66,6 +66,14 @@ services:
     volumes:
       - "./pelias.json:/code/pelias.json"
       - "${DATA_DIR}:/data"
+  geonames:
+    image: pelias/geonames:master
+    container_name: pelias_geonames
+    user: "${DOCKER_USER}"
+    volumes:
+      - "./pelias.json:/code/pelias.json"
+      - "${DATA_DIR}:/data"
+      - "./blacklist/:/data/blacklist"
   csv-importer:
     image: pelias/csv-importer:master
     container_name: pelias_csv_importer
