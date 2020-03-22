@@ -26,9 +26,9 @@ filter_json = function(test_json){
     input = any(unlist(sapply(states, function(s) grep(s, DF[r, "in"][[1]]))))  
     expected|input
   }
-  in_region = lapply(1:nrow(na_search[["tests"]]), FUN = check_row, DF = na_search[["tests"]])
+  in_region = unlist(lapply(1:nrow(na_search[["tests"]]), FUN = check_row, DF = na_search[["tests"]]))
 
-  na_search[["tests"]] <- na_search[["tests"]][unlist(in_region), ]
+  na_search[["tests"]] <- na_search[["tests"]][in_region, ]
   
   # only write out filtered json if any of the addresses were in the selected states
   if(any(in_region)){
@@ -37,7 +37,7 @@ filter_json = function(test_json){
     close(outfile)  
   }
   
-  paste0(test_json, ": ", sum(unlist(in_region)),"/", orig_rows)
+  paste0(test_json, ": ", sum(in_region),"/", orig_rows)
 }
 
 # run and display filter results
