@@ -9,6 +9,8 @@ services:
     user: "${DOCKER_USER}"
     restart: always
     ports: [ "4400:4400" ]
+    logging:
+      driver: none
   schema:
     image: pelias/schema:master
     container_name: pelias_schema
@@ -24,6 +26,8 @@ services:
     ports: [ "4000:4000" ]
     volumes:
       - "./pelias.json:/code/pelias.json"
+    logging:
+      driver: none
   placeholder:
     image: pelias/placeholder:master
     container_name: pelias_placeholder
@@ -35,6 +39,8 @@ services:
       - "./pelias.json:/code/pelias.json"
       - "${DATA_DIR}:/data"
       - "./blacklist/:/data/blacklist"
+    logging:
+      driver: none
   whosonfirst:
     image: pelias/whosonfirst:master
     container_name: pelias_whosonfirst
@@ -99,6 +105,8 @@ services:
     volumes:
       - "./pelias.json:/code/pelias.json"
       - "${DATA_DIR}:/data"
+    logging:
+      driver: none
   pip:
     image: pelias/pip-service:master
     container_name: pelias_pip-service
@@ -109,6 +117,8 @@ services:
     volumes:
       - "./pelias.json:/code/pelias.json"
       - "${DATA_DIR}:/data"
+    logging:
+      driver: none 
   elasticsearch:
     image: pelias/elasticsearch:7.5.1
     container_name: pelias_elasticsearch

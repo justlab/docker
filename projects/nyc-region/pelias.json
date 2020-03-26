@@ -1,6 +1,6 @@
 {
   "logger": {
-    "level": "info",
+    "level": "emerg",
     "timestamp": false
   },
   "esclient": {
