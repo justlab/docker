@@ -40,5 +40,6 @@ filter_json = function(test_json){
   paste0(test_json, ": ", sum(in_region),"/", orig_rows)
 }
 
+options(max.print=length(test_files))
 # run and display filter results
 unlist(lapply(test_files, filter_json))
